@@ -1,0 +1,14 @@
+@prefix vrsl: <https://dmaus.name/ns/vrsl#> .
+
+[
+    a vrsl:ValidationSummary ;
+    vrsl:isValid "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+    vrsl:result [
+        a vrsl:ValidationResult ;
+        vrsl:message "An assertion failed..."@en ;
+        vrsl:instanceLocation [
+            a vrsl:XPathLocator ;
+            vrsl:value "/foo[1]/@baz"
+        ]
+    ]
+] .

@@ -1,0 +1,7 @@
+<schematron-output xmlns="http://purl.oclc.org/dsdl/svrl">
+  <active-pattern/>
+  <fired-rule context="element"/>
+  <failed-assert location="/foo[1]/@baz" test="false()">
+    <text xml:lang="en">An assertion failed...</text>
+  </failed-assert>
+</schematron-output>

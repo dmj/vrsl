@@ -1,0 +1,21 @@
+{
+    "@type": "vrsl:ValidationSummary",
+    "isValid": true,
+    "result": [
+        {
+            "@type": "vrsl:ValidationResult",
+            "message": [
+                {
+                    "@language": "en",
+                    "@value": "An assertion failed..."
+                }
+            ],
+            "instanceLocation": [
+                {
+                    "@type": "vrsl:XPathLocator",
+                    "value": "/foo[1]/@baz"
+                }
+            ]
+        }
+    ]
+}

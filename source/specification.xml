@@ -1,0 +1,225 @@
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xi="http://www.w3.org/2001/XInclude" status="draft">
+  <info>
+    <title>Validation Report Summary Language (VRSL)</title>
+    <subtitle>A language for summarizing validation reports</subtitle>
+    <authorgroup>
+      <author>
+        <personname>David Maus</personname>
+      </author>
+    </authorgroup>
+  </info>
+  <section xml:id="introduction">
+    <title>Introduction</title>
+    <para>
+      The idea of a unified language to express validation results grew out of the XProc.Next community group discussing
+      the different validation steps. XProc 1.0 supports validation with XML Schema, RelaxNG, Schematron, and NVDL. With
+      the advent of non-XML documents flowing through an XProc pipeline other validation technologies like JSON-Schema
+      came into view. The Validation Report Summary Language (VRSL) addresses the need for a unified language for
+      validation results by providing a vocabulary for <emphasis>summarizing</emphasis> validation reports, and a
+      canonical serialization of such a validation report summary as XML.
+    </para>
+    <para>
+      VRSL conceptualizes validation as process that evaluates whether a given document is valid with respect to set of
+      rules, a schema. The validation process might create validation results with information about parts of the
+      document that did or did not validate with respect to the rules of the schema. A validation result conveys a
+      human-readable message and indiciates the part of the document and/or schema that caused validation to fail.
+    </para>
+    <figure>
+      <title>A validation summary graph</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figure-01.svg"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      While VRSL uses RDF to model the underlying concepts it also uses shape constraint expressions (SHACL) to restrict
+      the valid shape of the validation summary graph. With one exception it defines all classes as
+      <emphasis>closed</emphasis>, meaning an instance must not contain properties other than the ones listet here. The
+      one exception is the <link linkend="CustomLocator">CustomLocator</link>, a class for expressing locators not
+      defined here.
+    </para>
+  </section>
+  <section xml:id="ontology">
+    <title>Ontology</title>
+    <para>
+      This is a placeholder whose content is replaced by a DocBook section created from the formal ontology
+      specification.
+    </para>
+  </section>
+  <section xml:id="serialization">
+    <title>Serializations</title>
+    <section>
+      <title>XML Serialization</title>
+      <para>
+        The graph is serialized as striped RDF/XML centered on the Summary node. In a striped syntax a set of triples is
+        represented as sequence of XML elements corresponding to the subject containing child XML elements corresponding to
+        predicates the content or attributes of which correspond to the objects.
+      </para>
+      <section>
+        <title>Serialization rules</title>
+        <para> The rules for serializing a ValidationSummary as XML are as follows: </para>
+        <itemizedlist>
+          <listitem>
+            <para> The serialization starts with the ValidationSummary node as subject. </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis>Subject rule:</emphasis> Create an element whose name is derived from the
+              URI reference which gives the type of the subject, following the URI-QName mapping
+              convention described in section 2.1 of the RDF/XML specification.
+            </para>
+            <informalexample>
+              <para>Serialize the node of the type <uri>https://dmaus.name/ns/vrsl#ValidationSummary</uri> as
+              an element <tag class="element">vrsl:ValidationSummary</tag> where <tag class="prefix"
+              >svrl</tag> is bound to <uri>https://dmaus.name/ns/vrsl#.</uri></para>
+            </informalexample>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis>Predicate rule:</emphasis> For each predicate create an element whose name
+              is derived from the URI reference which forms the predicate, following the URI-QName
+            mapping convention described in section 2.1 of the RDF/XML specification. </para>
+            <informalexample>
+              <para>Serialize the predicate <uri>https://dmaus.name/ns/vrsl#result</uri> as
+              an element <tag class="element">vrsl:result</tag> where <tag class="prefix"
+              >svrl</tag> is bound to <uri>https://dmaus.name/ns/vrsl#.</uri></para>
+            </informalexample>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis>Object rule:</emphasis>
+            </para>
+            <itemizedlist>
+              <listitem>
+                <para> If the object of the triple is a URI reference, add an attribute with the
+                QName rdf:resource and make the value of this attribute a URI reference
+                corresponding to the object. In this case, the property element is empty.
+                </para>
+              </listitem>
+              <listitem>
+                <para> If the object of the triple is an instance of a class, apply the Subject
+                rule. </para>
+              </listitem>
+              <listitem>
+                <para> If the object of the triple is a literal</para>
+                <itemizedlist>
+                <listitem>
+                  <para> For a plain literal, make the lexical form the content of the
+                  property element. If a language tag is present, add an attribute with
+                  the QName <tag class="attribute">xml:lang</tag> and make the value of
+                  this attribute the language tag. </para>
+                </listitem>
+                <listitem>
+                  <para> For a typed literal, make the lexical form the content of the
+                  property element, and add an attribute with the QName <tag
+                  class="attribute">rdf:datatype</tag> and make the value of this
+                  attribute a URI reference corresponding to the URI of the datatype.
+                  </para>
+                </listitem>
+                <listitem>
+                  <para> For an XML literal i.e. a typed literal with the datatype
+                  <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</uri>, make
+                  the lexical form the content of the property element, and add an
+                  attribute with the QName <tag class="attribute">rdf:parseType</tag> and
+                  make the value of this attribute the string <tag class="attvalue"
+                  >Literal</tag>.  </para>
+                </listitem>
+                </itemizedlist>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+    <section>
+      <title>JSON Serialization</title>
+      <para>The rules for serializing a ValidationSummary as JSON are as follows:<itemizedlist>
+          <listitem>
+            <para>The serialization starts with the ValidationSummary node as subject.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis>Subject rule:</emphasis> Create an object with a <tag>@type</tag>
+              property which gives the type of the subject, following the URI-QName mapping
+              convention described in section 2.1 of the RDF/XML specification.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis>Predicate rule:</emphasis>
+              <itemizedlist>
+                <listitem>
+                  <para>For each distinct predicate create a property whose name is derived from the
+                    URI reference which forms the predicate, following the URI-QName mapping
+                    convention described in section 2.1 of the RDF/XML specification. </para>
+                </listitem>
+                <listitem>
+                  <para>If a predicate is repeatable, it's objects are grouped in a JSON
+                    array.</para>
+                </listitem>
+              </itemizedlist></para>
+          </listitem>
+          <listitem>
+            <para><emphasis>Object rule:</emphasis><itemizedlist>
+                <listitem>
+                  <para>If the object of the triple is a URI reference, create an object with a @id
+                    property which gives the value of the object.</para>
+                </listitem>
+                <listitem>
+                  <para>If the object of the triple is an instance of a class, apply the Subject
+                    rule.</para>
+                </listitem>
+                <listitem>
+                  <para>If the object of the triple is a literal<itemizedlist>
+                      <listitem>
+                        <para>For a plain literal without a language tag, make the lexical form of
+                          the content of a string.</para>
+                      </listitem>
+                      <listitem>
+                        <para>For a plain literal with a language tag, create an object with a
+                            <tag>@value</tag> property which gives the lexical form of the content
+                          and a <tag>@language</tag> property which gives the value of the language
+                          tag.</para>
+                      </listitem>
+                      <listitem>
+                        <para>For a typed literal with a corresponding JSON datatype, use the
+                          corresponding datatype.</para>
+                      </listitem>
+                      <listitem>
+                        <para>For a typed literal without a corresponding JSON datatype, create an
+                          object with a <tag>@value</tag> property which gives the lexical form of
+                          the content and a <tag>@type</tag> property which gives the URI of the
+                          datatype.</para>
+                      </listitem>
+                    </itemizedlist></para>
+                </listitem>
+              </itemizedlist></para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+  </section>
+  <appendix>
+    <title>Appendix</title>
+    <section>
+      <title>Examples</title>
+      <section>
+        <title>Schematron validation</title>
+        <example>
+          <title>SVRL Report</title>
+          <programlisting language="xml"><xi:include href="example/schematron.svrl" parse="text"/></programlisting>
+        </example>
+        <example>
+          <title>Validation summary in Turtle</title>
+          <programlisting language="turtle"><xi:include href="example/schematron.ttl" parse="text"/></programlisting>
+        </example>
+        <example>
+          <title>Validation summary in XML</title>
+          <programlisting language="xml"><xi:include href="example/schematron.rdf" parse="text"/></programlisting>
+        </example>
+        <example>
+          <title>Validation summary in JSON</title>
+          <programlisting language="json"><xi:include href="example/schematron.json" parse="text"/></programlisting>
+        </example>
+      </section>
+    </section>
+  </appendix>
+</article>
