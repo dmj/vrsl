@@ -6,10 +6,9 @@
 
   <p:serialization port="result" indent="true" method="html" version="5"/>
 
-
   <p:xslt name="ontology2db">
     <p:input port="source">
-      <p:document href="../../../source/ontology.rdf"/>
+      <p:document href="../../../source/specification.rdf"/>
     </p:input>
     <p:input port="stylesheet">
       <p:document href="../xslt/ontology2db.xsl"/>
