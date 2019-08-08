@@ -132,6 +132,13 @@
           </listitem>
         </itemizedlist>
       </section>
+      <section>
+        <title>RelaxNG grammar for XML serialization</title>
+        <para>
+          The following RelaxNG grammar can be used to validate the XML serialization.
+        </para>
+        <programlisting language="rnc"><xi:include href="vrsl.rnc" parse="text"/></programlisting>
+      </section>
     </section>
     <section>
       <title>JSON Serialization</title>
@@ -199,6 +206,10 @@
   </section>
   <appendix>
     <title>Appendix</title>
+    <section>
+      <title>Formal Ontology</title>
+      <programlisting language="xml"><xi:include href="specification.rdf" parse="text"/></programlisting>
+    </section>
     <section>
       <title>Examples</title>
       <section>
