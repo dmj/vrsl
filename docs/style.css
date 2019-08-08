@@ -1,0 +1,32 @@
+html { font-size: 16pt; background-color: white; color: #444; }
+body { width: 60em; margin: 0 auto; }
+dl { margin-left: 2em; }
+dt { float: left; clear: left; width: 8em; font-weight: bold; }
+code { font-size: 0.9em; }
+.example { margin: 0 2em; }
+
+.draft p {
+    background: rebeccapurple;
+    color: white;    
+    margin: 0
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.draft p:before,
+.draft p:after {
+  content: '';
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: rebeccapurple;
+}
+
+.draft p:before { right: 100%; }
+.draft p:after { left: 100%; }
