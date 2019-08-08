@@ -154,6 +154,12 @@
     <rdfs:label>value</rdfs:label>
   </rdfs:Property>
 
+  <rdfs:Property rdf:about="#document">
+    <rdfs:label>document</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:domain rdf:resource="#Locator"/>
+  </rdfs:Property>
+
   <rdfs:Property rdf:about="#column">
     <rdfs:label>column</rdfs:label>
     <rdfs:domain rdf:resource="#LineColumnLocator"/>
