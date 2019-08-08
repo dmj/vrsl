@@ -121,8 +121,12 @@
   <xsl:template match="example">
     <samp>
       <p><xsl:apply-templates select="title/node()"/></p>
-      <pre><code class="programlisting/@language"><xsl:apply-templates select="programlisting/node()"/></code></pre>
+      <xsl:apply-templates select="programlisting"/>
     </samp>
+  </xsl:template>
+
+  <xsl:template match="programlisting">
+    <pre><code class="@language"><xsl:apply-templates select="node()"/></code></pre>
   </xsl:template>
 
   <xsl:template match="informalexample">
