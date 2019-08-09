@@ -33,13 +33,6 @@
         </imageobject>
       </mediaobject>
     </figure>
-    <para>
-      While VRSL uses RDF to model the underlying concepts it also uses shape constraint expressions (SHACL) to restrict
-      the valid shape of the validation summary graph. With one exception it defines all classes as
-      <emphasis>closed</emphasis>, meaning an instance must not contain properties other than the ones listet here. The
-      one exception is the <link linkend="CustomLocator">CustomLocator</link>, a class for expressing locators not
-      defined here.
-    </para>
   </section>
   <section xml:id="ontology">
     <title>Ontology</title>

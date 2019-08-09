@@ -86,9 +86,7 @@
                 <ref name="{fn:pattern-name(resolve-uri(sh:path/@rdf:resource, base-uri(sh:path/@rdf:resource)))}"/>
               </xsl:element>
             </xsl:for-each>
-            <xsl:if test="xs:boolean(sh:closed) eq false()">
-              <ref name="foreign-properties"/>
-            </xsl:if>
+            <ref name="foreign-properties"/>
             <empty/>
           </interleave>
         </element>

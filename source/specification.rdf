@@ -11,7 +11,6 @@
       validity of the document instance with respect to a schema and all validation results.
     </rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sh:closed>
     <sh:property>
       <sh:PropertyShape>
         <sh:path rdf:resource="#isValid"/>
@@ -33,7 +32,6 @@
     <rdfs:comment>Describes a location through line and column number.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Locator"/>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sh:closed>
     <sh:property>
       <sh:PropertyShape>
         <sh:path rdf:resource="#line"/>
@@ -56,7 +54,6 @@
     <rdfs:label>Locator</rdfs:label>
     <rdfs:comment>Describes the location of an information item in a document.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sh:closed>
   </rdfs:Class>
 
   <rdfs:Class rdf:about="#XPathLocator">
@@ -64,7 +61,6 @@
     <rdfs:comment>Describes a location through an XPath expression.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Locator"/>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sh:closed>
     <sh:property>
       <sh:PropertyShape>
         <sh:path rdf:resource="#value"/>
@@ -85,13 +81,11 @@
     <rdfs:label>CustomLocator</rdfs:label>
     <rdfs:comment>Describes a location through an implementation defined expression.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</sh:closed>
   </rdfs:Class>
 
   <rdfs:Class rdf:about="#ValidationResult">
     <rdfs:label>ValidationResult</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-    <sh:closed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sh:closed>
     <sh:property>
       <sh:PropertyShape>
         <sh:path rdf:resource="#message"/>
