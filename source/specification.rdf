@@ -80,6 +80,7 @@
   <rdfs:Class rdf:about="#CustomLocator">
     <rdfs:label>CustomLocator</rdfs:label>
     <rdfs:comment>Describes a location through an implementation defined expression.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Locator"/>
     <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
   </rdfs:Class>
 
