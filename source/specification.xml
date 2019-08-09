@@ -142,66 +142,7 @@
     </section>
     <section>
       <title>JSON Serialization</title>
-      <para>The rules for serializing a ValidationSummary as JSON are as follows:<itemizedlist>
-          <listitem>
-            <para>The serialization starts with the ValidationSummary node as subject.</para>
-          </listitem>
-          <listitem>
-            <para><emphasis>Subject rule:</emphasis> Create an object with a <tag>@type</tag>
-              property which gives the type of the subject, following the URI-QName mapping
-              convention described in section 2.1 of the RDF/XML specification.</para>
-          </listitem>
-          <listitem>
-            <para><emphasis>Predicate rule:</emphasis>
-              <itemizedlist>
-                <listitem>
-                  <para>For each distinct predicate create a property whose name is derived from the
-                    URI reference which forms the predicate, following the URI-QName mapping
-                    convention described in section 2.1 of the RDF/XML specification. </para>
-                </listitem>
-                <listitem>
-                  <para>If a predicate is repeatable, it's objects are grouped in a JSON
-                    array.</para>
-                </listitem>
-              </itemizedlist></para>
-          </listitem>
-          <listitem>
-            <para><emphasis>Object rule:</emphasis><itemizedlist>
-                <listitem>
-                  <para>If the object of the triple is a URI reference, create an object with a @id
-                    property which gives the value of the object.</para>
-                </listitem>
-                <listitem>
-                  <para>If the object of the triple is an instance of a class, apply the Subject
-                    rule.</para>
-                </listitem>
-                <listitem>
-                  <para>If the object of the triple is a literal<itemizedlist>
-                      <listitem>
-                        <para>For a plain literal without a language tag, make the lexical form of
-                          the content of a string.</para>
-                      </listitem>
-                      <listitem>
-                        <para>For a plain literal with a language tag, create an object with a
-                            <tag>@value</tag> property which gives the lexical form of the content
-                          and a <tag>@language</tag> property which gives the value of the language
-                          tag.</para>
-                      </listitem>
-                      <listitem>
-                        <para>For a typed literal with a corresponding JSON datatype, use the
-                          corresponding datatype.</para>
-                      </listitem>
-                      <listitem>
-                        <para>For a typed literal without a corresponding JSON datatype, create an
-                          object with a <tag>@value</tag> property which gives the lexical form of
-                          the content and a <tag>@type</tag> property which gives the URI of the
-                          datatype.</para>
-                      </listitem>
-                    </itemizedlist></para>
-                </listitem>
-              </itemizedlist></para>
-          </listitem>
-        </itemizedlist></para>
+      <para>To be done...</para>
     </section>
   </section>
   <appendix>
@@ -225,10 +166,6 @@
         <example>
           <title>Validation summary in XML</title>
           <programlisting language="xml"><xi:include href="example/schematron.rdf" parse="text"/></programlisting>
-        </example>
-        <example>
-          <title>Validation summary in JSON</title>
-          <programlisting language="json"><xi:include href="example/schematron.json" parse="text"/></programlisting>
         </example>
       </section>
     </section>
