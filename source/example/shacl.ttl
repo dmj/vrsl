@@ -1,0 +1,21 @@
+@prefix vrsl: <https://dmaus.name/ns/vrsl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.com/> .
+
+[
+    a vrsl:ValidationSummary ;
+    vrsl:isValid "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+    vrsl:result [
+        a vrsl:ValidationResult ;
+        vrsl:message "ex:age expects a literal of datatype xsd:integer." ;
+        vrsl:schemaLocation [
+            a vrsl:CustomLocator ;
+            sh:sourceShape ex:PersonShape-age
+        ] ;
+        vrsl:instanceLocation [
+            a vrsl:CustomLocator ;
+            sh:focusNode ex:Bob ;
+            sh:resultPath ex:age
+        ]
+    ]
+] .

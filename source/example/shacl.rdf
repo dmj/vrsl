@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vrsl:ValidationSummary xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns:sh="http://www.w3.org/ns/shacl#"
+                        xmlns:vrsl="https://dmaus.name/ns/vrsl#">
+  <vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</vrsl:isValid>
+  <vrsl:result>
+    <vrsl:ValidationResult>
+      <vrsl:instanceLocation>
+        <vrsl:CustomLocator>
+          <sh:focusNode rdf:resource="http://example.com/Bob"/>
+          <sh:resultPath rdf:resource="http://example.com/age"/>
+        </vrsl:CustomLocator>
+      </vrsl:instanceLocation>
+      <vrsl:message>ex:age expects a literal of datatype xsd:integer.</vrsl:message>
+      <vrsl:schemaLocation>
+        <vrsl:CustomLocator>
+          <sh:sourceShape rdf:resource="http://example.com/PersonShape-age"/>
+        </vrsl:CustomLocator>
+      </vrsl:schemaLocation>
+    </vrsl:ValidationResult>
+  </vrsl:result>
+</vrsl:ValidationSummary>

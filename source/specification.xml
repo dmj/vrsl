@@ -161,6 +161,21 @@
           <programlisting language="xml"><xi:include href="example/schematron.rdf" parse="text"/></programlisting>
         </example>
       </section>
+      <section>
+        <title>SHACL validation</title>
+        <example>
+          <title>Validation report</title>
+          <programlisting language="turtle"><xi:include href="example/shacl.report" parse="text"/></programlisting>
+        </example>
+        <example>
+          <title>Validation summary in Turtle</title>
+          <programlisting language="turtle"><xi:include href="example/shacl.ttl" parse="text"/></programlisting>
+        </example>
+        <example>
+          <title>Validation summary in XML</title>
+          <programlisting language="xml"><xi:include href="example/shacl.rdf" parse="text"/></programlisting>
+        </example>
+      </section>
     </section>
   </appendix>
 </article>
