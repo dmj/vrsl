@@ -113,9 +113,11 @@
           </xsl:when>
           <xsl:when test="$range eq 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString'">
             <interleave>
-              <attribute name="xml:lang">
-                <data type="language"/>
-              </attribute>
+              <optional>
+                <attribute name="xml:lang">
+                  <data type="language"/>
+                </attribute>
+              </optional>
               <text/>
             </interleave>
           </xsl:when>
