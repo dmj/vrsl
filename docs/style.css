@@ -1,7 +1,8 @@
 html { font-size: 16pt; background-color: white; color: #444; }
 body { width: 60em; margin: 0 auto; }
-dl { margin-left: 2em; }
-dt { float: left; clear: left; width: 8em; font-weight: bold; }
+main dl { margin-left: 2em; }
+main dt { float: left; clear: left; width: 8em; }
+dt { font-weight: bold; }
 code { font-size: 0.9em; }
 .example { margin: 0 2em; }
 
@@ -30,3 +31,7 @@ code { font-size: 0.9em; }
 
 .draft p:before { right: 100%; }
 .draft p:after { left: 100%; }
+
+.biblio-abbrev:before { content: "["; }
+.biblio-abbrev:after { content: "]"; }
+

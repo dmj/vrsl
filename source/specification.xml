@@ -59,24 +59,14 @@
           <para>
             <emphasis>Subject rule:</emphasis> Create an element whose name is derived from the
             URI reference which gives the type of the subject, following the URI-QName mapping
-            convention described in section 2.1 of the RDF/XML specification.
+            convention described in section 2.1 of the RDF/XML specification <biblioref linkend="rdfxml"/>.
           </para>
-          <informalexample>
-            <para>Serialize the node of the type <uri>https://dmaus.name/ns/vrsl#ValidationSummary</uri> as
-            an element <tag class="element">vrsl:ValidationSummary</tag> where <tag class="prefix"
-            >svrl</tag> is bound to <uri>https://dmaus.name/ns/vrsl#.</uri></para>
-          </informalexample>
         </listitem>
         <listitem>
           <para>
-            <emphasis>Predicate rule:</emphasis> For each predicate create an element whose name
-            is derived from the URI reference which forms the predicate, following the URI-QName
-          mapping convention described in section 2.1 of the RDF/XML specification. </para>
-          <informalexample>
-            <para>Serialize the predicate <uri>https://dmaus.name/ns/vrsl#result</uri> as
-            an element <tag class="element">vrsl:result</tag> where <tag class="prefix"
-            >svrl</tag> is bound to <uri>https://dmaus.name/ns/vrsl#.</uri></para>
-          </informalexample>
+            <emphasis>Predicate rule:</emphasis> For each predicate create an element whose name is derived from the URI
+            reference which forms the predicate, following the URI-QName mapping convention described in section 2.1 of
+            the RDF/XML specification <biblioref linkend="rdfxml"/>. </para>
         </listitem>
         <listitem>
           <para>
@@ -125,36 +115,29 @@
     </section>
     <section>
       <title>JSON Serialization</title>
-      <para> The graph is serialized as compacted JSON-LD centered on the ValidationSummary node and
-      using the context given in the appendix. </para>
-      <para>
-        The rules for serializing a ValidationSummary as JSON are as follows:
-      </para>
-      <itemizedlist>
-        <listitem>
-          <para>
-            The serialization starts with the ValidationSummary node as subject.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis>Subject rule:</emphasis> Create an object with a @type property which gives the type of the subject.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis>Predicate rule:</emphasis> For each predicate create a property whose name is the URI reference
-            which forms the predicate.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis>Object rule:</emphasis>
-          </para>
-        </listitem>
-      </itemizedlist>
+      <para> The graph is serialized as compacted JSON-LD <biblioref linkend="jsonld"/> centered on the ValidationSummary node using the context given
+      in the appendix. </para>
     </section>
   </section>
+  <bibliography>
+    <title>Bibliography</title>
+    <bibliolist>
+      <biblioentry xml:id="jsonld">
+        <abbrev>JSON-LD</abbrev>
+        <bibliomisc>
+          Longley, Dave, Gregg Kellogg, Markus Lanthaler, and Manu Sporny. 2014. “JSON-LD 1.0 Processing Algorithms and
+          API.” W3C Recommendation. W3C. http://www.w3.org/TR/2014/REC-json-ld-api-20140116/.
+        </bibliomisc>
+      </biblioentry>
+      <biblioentry xml:id="rdfxml">
+        <abbrev>RDF/XML</abbrev>
+        <bibliomisc>
+          Gandon, Fabien, and Guus Schreiber. 2014. “RDF 1.1 XML Syntax.” W3C Recommendation. World Wide Web
+          Consortium. http://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/.
+        </bibliomisc>
+      </biblioentry>
+    </bibliolist>
+  </bibliography>
   <appendix>
     <title>Appendix</title>
     <section>

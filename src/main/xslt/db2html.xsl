@@ -8,6 +8,7 @@
   <xsl:template match="article">
     <html>
       <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <xsl:apply-templates select="info" mode="head"/>
         <link rel="stylesheet" href="style.css" type="text/css"/>
         <link rel="stylesheet" href="highlight/styles/default.css"/>
@@ -19,7 +20,12 @@
           <p>Editor's Draft</p>
         </div>
         <xsl:apply-templates select="info"/>
-        <xsl:apply-templates select="section | appendix"/>
+        <main>
+          <xsl:apply-templates select="section"/>
+        </main>
+        <aside>
+          <xsl:apply-templates select="bibliography | appendix"/>
+        </aside>
       </body>
     </html>
   </xsl:template>
@@ -147,6 +153,32 @@
   <xsl:template match="info">
     <xsl:apply-templates select="title"/>
     <xsl:apply-templates select="* except (title, subtitle)"/>
+  </xsl:template>
+
+  <xsl:template match="biblioref">
+    <a href="#{@linkend}">
+      <xsl:apply-templates select="id(@linkend)/abbrev"/>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="bibliolist">
+    <dl>
+      <xsl:for-each select="biblioentry">
+        <xsl:sort select="bibliomisc"/>
+        <dt id="{@xml:id}">
+          <xsl:apply-templates select="abbrev"/>
+        </dt>
+        <dd>
+          <xsl:apply-templates select="bibliomisc"/>
+        </dd>
+      </xsl:for-each>
+    </dl>
+  </xsl:template>
+
+  <xsl:template match="biblioentry/abbrev">
+    <span class="biblio-abbrev">
+      <xsl:apply-templates/>
+    </span>
   </xsl:template>
 
   <xsl:template match="author" mode="head">
