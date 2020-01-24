@@ -1,0 +1,19 @@
+<vrsl:ValidationSummary xmlns:vrsl="https://dmaus.name/ns/vrsl#"
+                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</vrsl:isValid>
+  <vrsl:result>
+    <vrsl:ValidationResult>
+      <vrsl:message>
+        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
+    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{"http://example.org/ns":child}' is
+    expected.
+      </vrsl:message>
+      <vrsl:instanceLocation>
+        <vrsl:LineColumnLocator>
+          <vrsl:line>1</vrsl:line>
+          <vrsl:column>76</vrsl:column>
+        </vrsl:LineColumnLocator>
+      </vrsl:instanceLocation>
+    </vrsl:ValidationResult>
+  </vrsl:result>
+</vrsl:ValidationSummary>

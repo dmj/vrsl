@@ -210,7 +210,7 @@
                      </dd>
                      <dt>Properties</dt>
                      <dd>
-                        <p><a href="#document">document</a>?, <a href="#value">value</a></p>
+                        <p><a href="#value">value</a></p>
                      </dd>
                   </dl>
                </div>
@@ -231,23 +231,6 @@
                      <dt>Range</dt>
                      <dd>
                         <p>xsd:integer</p>
-                     </dd>
-                  </dl>
-               </div>
-               <div id="document">
-                  <h4>document</h4>
-                  <dl>
-                     <dt>URI</dt>
-                     <dd>
-                        <p>https://dmaus.name/ns/vrsl#document</p>
-                     </dd>
-                     <dt>Domain</dt>
-                     <dd>
-                        <p><a href="#Locator">Locator</a></p>
-                     </dd>
-                     <dt>Range</dt>
-                     <dd>
-                        <p>xsd:anyURI</p>
                      </dd>
                   </dl>
                </div>
@@ -634,13 +617,6 @@
         &lt;sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"&gt;1&lt;/sh:maxCount&gt;
       &lt;/sh:PropertyShape&gt;
     &lt;/sh:property&gt;
-    &lt;sh:property&gt;
-      &lt;sh:PropertyShape&gt;
-        &lt;sh:path rdf:resource="#document"/&gt;
-        &lt;sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/&gt;
-        &lt;sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"&gt;1&lt;/sh:maxCount&gt;
-      &lt;/sh:PropertyShape&gt;
-    &lt;/sh:property&gt;
   &lt;/rdfs:Class&gt;
 
   &lt;rdfs:Class rdf:about="#CustomLocator"&gt;
@@ -715,12 +691,6 @@
     &lt;rdfs:label&gt;value&lt;/rdfs:label&gt;
   &lt;/rdfs:Property&gt;
 
-  &lt;rdfs:Property rdf:about="#document"&gt;
-    &lt;rdfs:label&gt;document&lt;/rdfs:label&gt;
-    &lt;rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/&gt;
-    &lt;rdfs:domain rdf:resource="#Locator"/&gt;
-  &lt;/rdfs:Property&gt;
-
   &lt;rdfs:Property rdf:about="#instance"&gt;
     &lt;rdfs:label&gt;instance&lt;/rdfs:label&gt;
     &lt;rdfs:domain rdf:resource="#ValidationSummary"/&gt;
@@ -779,9 +749,7 @@ Locator =
   | XPathLocator
   | CustomLocator
 XPathLocator =
-  element XPathLocator {
-    value &amp; document? &amp; foreign-properties &amp; empty
-  }
+  element XPathLocator { value &amp; foreign-properties &amp; empty }
 CustomLocator = element CustomLocator { foreign-properties &amp; empty }
 ValidationResult =
   element ValidationResult {
@@ -807,13 +775,6 @@ message =
   }
 schemaLocation = element schemaLocation { ocator }
 value = element value { any-content }
-document =
-  element document {
-    attribute rdf:datatype {
-      "http://www.w3.org/2001/XMLSchema#anyURI"
-    },
-    xsd:anyURI
-  }
 instance = element instance { any-content }
 column =
   element column {
@@ -873,7 +834,7 @@ line =
                   <samp>
                      <p>Validation summary in XML</p><pre><code class="@language">&lt;vrsl:ValidationSummary xmlns:vrsl="https://dmaus.name/ns/vrsl#"
                         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
-  &lt;vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"&gt;true&lt;/vrsl:isValid&gt;
+  &lt;vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"&gt;false&lt;/vrsl:isValid&gt;
   &lt;vrsl:result&gt;
     &lt;vrsl:ValidationResult&gt;
       &lt;vrsl:message xml:lang="en"&gt;An assertion failed...&lt;/vrsl:message&gt;
@@ -954,6 +915,62 @@ line =
           &lt;sh:sourceShape rdf:resource="http://example.com/PersonShape-age"/&gt;
         &lt;/vrsl:CustomLocator&gt;
       &lt;/vrsl:schemaLocation&gt;
+    &lt;/vrsl:ValidationResult&gt;
+  &lt;/vrsl:result&gt;
+&lt;/vrsl:ValidationSummary&gt;
+</code></pre></samp>
+                  
+               </div>
+               
+               <div>
+                  
+                  <h3>XML Schema validation in XProc 1.0 (Calabash)</h3>
+                  <samp>
+                     <p>Validation report</p><pre><code class="@language">&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
+  &lt;c:error line="1" column="76"&gt;
+    org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
+    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{"http://example.org/ns":child}' is
+    expected.
+  &lt;/c:error&gt;
+&lt;/c:errors&gt;
+</code></pre></samp>
+                  <samp>
+                     <p>Validation summary in Turtle</p><pre><code class="@language">@prefix vrsl: &lt;https://dmaus.name/ns/vrsl#&gt; .
+
+[
+    a vrsl:ValidationSummary ;
+    vrsl:isValid false ;
+    vrsl:result [
+        a vrsl:ValidationResult ;
+        vrsl:instanceLocation [
+            a vrsl:LineColumnLocator ;
+            vrsl:column "76" ;
+            vrsl:line "1"
+        ] ;
+        vrsl:message """
+        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
+    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{\"http://example.org/ns\":child}' is
+    expected.
+      """
+] .
+</code></pre></samp>
+                  <samp>
+                     <p>Validation summary in XML</p><pre><code class="@language">&lt;vrsl:ValidationSummary xmlns:vrsl="https://dmaus.name/ns/vrsl#"
+                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
+  &lt;vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"&gt;false&lt;/vrsl:isValid&gt;
+  &lt;vrsl:result&gt;
+    &lt;vrsl:ValidationResult&gt;
+      &lt;vrsl:message&gt;
+        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
+    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{"http://example.org/ns":child}' is
+    expected.
+      &lt;/vrsl:message&gt;
+      &lt;vrsl:instanceLocation&gt;
+        &lt;vrsl:LineColumnLocator&gt;
+          &lt;vrsl:line&gt;1&lt;/vrsl:line&gt;
+          &lt;vrsl:column&gt;76&lt;/vrsl:column&gt;
+        &lt;/vrsl:LineColumnLocator&gt;
+      &lt;/vrsl:instanceLocation&gt;
     &lt;/vrsl:ValidationResult&gt;
   &lt;/vrsl:result&gt;
 &lt;/vrsl:ValidationSummary&gt;

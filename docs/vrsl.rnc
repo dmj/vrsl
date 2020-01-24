@@ -26,9 +26,7 @@ Locator =
   | XPathLocator
   | CustomLocator
 XPathLocator =
-  element XPathLocator {
-    value & document? & foreign-properties & empty
-  }
+  element XPathLocator { value & foreign-properties & empty }
 CustomLocator = element CustomLocator { foreign-properties & empty }
 ValidationResult =
   element ValidationResult {
@@ -54,13 +52,6 @@ message =
   }
 schemaLocation = element schemaLocation { ocator }
 value = element value { any-content }
-document =
-  element document {
-    attribute rdf:datatype {
-      "http://www.w3.org/2001/XMLSchema#anyURI"
-    },
-    xsd:anyURI
-  }
 instance = element instance { any-content }
 column =
   element column {

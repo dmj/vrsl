@@ -86,9 +86,6 @@
          <element name="XPathLocator">
             <interleave>
                <ref name="value"/>
-               <optional>
-                  <ref name="document"/>
-               </optional>
                <ref name="foreign-properties"/>
                <empty/>
             </interleave>
@@ -162,14 +159,6 @@
    <define name="value">
       <element name="value">
          <ref name="any-content"/>
-      </element>
-   </define>
-   <define name="document">
-      <element name="document">
-         <attribute name="rdf:datatype">
-            <value>http://www.w3.org/2001/XMLSchema#anyURI</value>
-         </attribute>
-         <data type="anyURI"/>
       </element>
    </define>
    <define name="instance">

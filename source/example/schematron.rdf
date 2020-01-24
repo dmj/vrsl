@@ -1,6 +1,6 @@
 <vrsl:ValidationSummary xmlns:vrsl="https://dmaus.name/ns/vrsl#"
                         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</vrsl:isValid>
+  <vrsl:isValid rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</vrsl:isValid>
   <vrsl:result>
     <vrsl:ValidationResult>
       <vrsl:message xml:lang="en">An assertion failed...</vrsl:message>
