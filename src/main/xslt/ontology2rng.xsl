@@ -135,12 +135,26 @@
 
   <xsl:function name="fn:element-name" as="xs:string">
     <xsl:param name="uri" as="xs:anyURI"/>
-    <xsl:value-of select="substring-after($uri, '#')"/>
+    <xsl:choose>
+      <xsl:when test="starts-with($uri, 'https://dmaus.name/ns/vrsl#')">
+        <xsl:value-of select="substring-after($uri, '#')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="replace($uri, '[^a-z]', '')"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
   <xsl:function name="fn:pattern-name" as="xs:string">
     <xsl:param name="uri" as="xs:anyURI"/>
-    <xsl:value-of select="substring-after($uri, '#')"/>
+    <xsl:choose>
+      <xsl:when test="starts-with($uri, 'https://dmaus.name/ns/vrsl#')">
+        <xsl:value-of select="substring-after($uri, '#')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="replace($uri, '[^a-z]', '')"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
   <xsl:function  name="fn:occurrence-name" as="xs:string?">
