@@ -161,6 +161,11 @@
       <xsl:when test="starts-with($target, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')">
         <xsl:value-of select="concat('rdf:', substring-after($target, '#'))"/>
       </xsl:when>
+      <xsl:when test="starts-with($target, 'http://purl.org/dc/terms/')">
+        <link xlink:href="{$target}">
+          <xsl:value-of select="concat('dct:', substring-after($target, 'http://purl.org/dc/terms/'))"/>
+        </link>
+      </xsl:when>
       <xsl:otherwise>
         <link xlink:href="{$target}">
           <xsl:value-of select="$target"/>
