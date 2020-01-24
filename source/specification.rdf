@@ -75,13 +75,6 @@
         <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
       </sh:PropertyShape>
     </sh:property>
-    <sh:property>
-      <sh:PropertyShape>
-        <sh:path rdf:resource="#document"/>
-        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-        <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
-      </sh:PropertyShape>
-    </sh:property>
   </rdfs:Class>
 
   <rdfs:Class rdf:about="#CustomLocator">
@@ -154,12 +147,6 @@
 
   <rdfs:Property rdf:about="#value">
     <rdfs:label>value</rdfs:label>
-  </rdfs:Property>
-
-  <rdfs:Property rdf:about="#document">
-    <rdfs:label>document</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-    <rdfs:domain rdf:resource="#Locator"/>
   </rdfs:Property>
 
   <rdfs:Property rdf:about="#instance">
