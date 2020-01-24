@@ -51,6 +51,71 @@
             </figure>
             
          </div>
+         <div id="namespaces">
+            
+            <h2>Namespaces</h2>
+            
+            <table>
+               
+               <caption>Namespaces used in this document</caption>
+               
+               <tbody>
+                  
+                  <tr>
+                     
+                     <td>dct</td>
+                     
+                     <td>http://purl.org/dc/terms/</td>
+                     
+                     <td>Dublin Core Metadata Terms</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                     
+                     <td>rdf</td>
+                     
+                     <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+                     
+                     <td>Resource Description Framework</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                     
+                     <td>vrsl</td>
+                     
+                     <td>https://dmaus.name/ns/vrsl#</td>
+                     
+                     <td>Validation Report Summary Language</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                     
+                     <td>sh</td>
+                     
+                     <td>http://www.w3.org/ns/shacl#</td>
+                     
+                     <td>Shape Constraint Language</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                     
+                     <td>xsd</td>
+                     
+                     <td>http://www.w3.org/2001/XMLSchema#</td>
+                     
+                     <td>XML Schema</td>
+                     
+                  </tr>
+                  
+               </tbody>
+               
+            </table>
+            
+         </div>
          <div id="ontology">
             <h2>Ontology</h2>
             <div>
@@ -126,7 +191,7 @@
                      </dd>
                      <dt>Properties</dt>
                      <dd>
-                        <p><a href="#isValid">isValid</a>?, <a href="#result">result</a>*
+                        <p><a href="#instance">instance</a>?, <a href="#isValid">isValid</a>?, <a href="#result">result</a>*
                         </p>
                      </dd>
                   </dl>
@@ -183,6 +248,20 @@
                      <dt>Range</dt>
                      <dd>
                         <p>xsd:anyURI</p>
+                     </dd>
+                  </dl>
+               </div>
+               <div id="instance">
+                  <h4>instance</h4>
+                  <p>Connects a validation summary with the validated instance.</p>
+                  <dl>
+                     <dt>URI</dt>
+                     <dd>
+                        <p>https://dmaus.name/ns/vrsl#instance</p>
+                     </dd>
+                     <dt>Domain</dt>
+                     <dd>
+                        <p><a href="#ValidationSummary">ValidationSummary</a></p>
                      </dd>
                   </dl>
                </div>
@@ -353,9 +432,11 @@
                   <li>
                      
                      <p>
-                        Predicate rule: For each predicate create an element whose name
-                        is derived from the URI reference which forms the predicate, following the URI-QName
-                        mapping convention described in section 2.1 of the RDF/XML specification <a href="#rdfxml"><span class="biblio-abbrev">RDF/XML</span></a>. 
+                        Predicate rule: For each predicate create an element whose name is derived from the
+                        URI
+                        reference which forms the predicate, following the URI-QName mapping convention described
+                        in section 2.1 of
+                        the RDF/XML specification <a href="#rdfxml"><span class="biblio-abbrev">RDF/XML</span></a>. 
                      </p>
                      
                   </li>
@@ -503,6 +584,13 @@
         &lt;sh:class rdf:resource="#ValidationResult"/&gt;
       &lt;/sh:PropertyShape&gt;
     &lt;/sh:property&gt;
+    &lt;sh:property&gt;
+      &lt;sh:PropertyShape&gt;
+        &lt;sh:path rdf:resource="#instance"/&gt;
+        &lt;sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#BlankNode"/&gt;
+        &lt;sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"&gt;1&lt;/sh:maxCount&gt;
+      &lt;/sh:PropertyShape&gt;
+    &lt;/sh:property&gt;
   &lt;/rdfs:Class&gt;
 
   &lt;rdfs:Class rdf:about="#LineColumnLocator"&gt;
@@ -633,6 +721,12 @@
     &lt;rdfs:domain rdf:resource="#Locator"/&gt;
   &lt;/rdfs:Property&gt;
 
+  &lt;rdfs:Property rdf:about="#instance"&gt;
+    &lt;rdfs:label&gt;instance&lt;/rdfs:label&gt;
+    &lt;rdfs:domain rdf:resource="#ValidationSummary"/&gt;
+    &lt;rdfs:comment&gt;Connects a validation summary with the validated instance.&lt;/rdfs:comment&gt;
+  &lt;/rdfs:Property&gt;
+
   &lt;rdfs:Property rdf:about="#column"&gt;
     &lt;rdfs:label&gt;column&lt;/rdfs:label&gt;
     &lt;rdfs:domain rdf:resource="#LineColumnLocator"/&gt;
@@ -673,7 +767,7 @@ any-content =
 foreign-properties = element * - ns1:* { any-content }*
 ValidationSummary =
   element ValidationSummary {
-    isValid? &amp; result* &amp; foreign-properties &amp; empty
+    isValid? &amp; result* &amp; instance? &amp; foreign-properties &amp; empty
   }
 LineColumnLocator =
   element LineColumnLocator {
@@ -697,8 +791,8 @@ ValidationResult =
     &amp; foreign-properties
     &amp; empty
   }
-result = element result { ValidationResult }
-instanceLocation = element instanceLocation { Locator }
+result = element result { alidationesult }
+instanceLocation = element instanceLocation { ocator }
 isValid =
   element isValid {
     attribute rdf:datatype {
@@ -711,7 +805,7 @@ message =
     attribute xml:lang { xsd:language }?
     &amp; text
   }
-schemaLocation = element schemaLocation { Locator }
+schemaLocation = element schemaLocation { ocator }
 value = element value { any-content }
 document =
   element document {
@@ -720,6 +814,7 @@ document =
     },
     xsd:anyURI
   }
+instance = element instance { any-content }
 column =
   element column {
     attribute rdf:datatype {

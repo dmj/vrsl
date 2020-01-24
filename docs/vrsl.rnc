@@ -14,7 +14,7 @@ any-content =
 foreign-properties = element * - ns1:* { any-content }*
 ValidationSummary =
   element ValidationSummary {
-    isValid? & result* & foreign-properties & empty
+    isValid? & result* & instance? & foreign-properties & empty
   }
 LineColumnLocator =
   element LineColumnLocator {
@@ -38,8 +38,8 @@ ValidationResult =
     & foreign-properties
     & empty
   }
-result = element result { ValidationResult }
-instanceLocation = element instanceLocation { Locator }
+result = element result { alidationesult }
+instanceLocation = element instanceLocation { ocator }
 isValid =
   element isValid {
     attribute rdf:datatype {
@@ -52,7 +52,7 @@ message =
     attribute xml:lang { xsd:language }?
     & text
   }
-schemaLocation = element schemaLocation { Locator }
+schemaLocation = element schemaLocation { ocator }
 value = element value { any-content }
 document =
   element document {
@@ -61,6 +61,7 @@ document =
     },
     xsd:anyURI
   }
+instance = element instance { any-content }
 column =
   element column {
     attribute rdf:datatype {

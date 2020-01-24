@@ -47,6 +47,9 @@
                <zeroOrMore>
                   <ref name="result"/>
                </zeroOrMore>
+               <optional>
+                  <ref name="instance"/>
+               </optional>
                <ref name="foreign-properties"/>
                <empty/>
             </interleave>
@@ -123,12 +126,12 @@
    </define>
    <define name="result">
       <element name="result">
-         <ref name="ValidationResult"/>
+         <ref name="alidationesult"/>
       </element>
    </define>
    <define name="instanceLocation">
       <element name="instanceLocation">
-         <ref name="Locator"/>
+         <ref name="ocator"/>
       </element>
    </define>
    <define name="isValid">
@@ -153,7 +156,7 @@
    </define>
    <define name="schemaLocation">
       <element name="schemaLocation">
-         <ref name="Locator"/>
+         <ref name="ocator"/>
       </element>
    </define>
    <define name="value">
@@ -167,6 +170,11 @@
             <value>http://www.w3.org/2001/XMLSchema#anyURI</value>
          </attribute>
          <data type="anyURI"/>
+      </element>
+   </define>
+   <define name="instance">
+      <element name="instance">
+         <ref name="any-content"/>
       </element>
    </define>
    <define name="column">
