@@ -1,5 +1,7 @@
 <xsl:transform version="2.0"
+               exclude-result-prefixes="#all"
                xpath-default-namespace="http://docbook.org/ns/docbook"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:output method="html" version="5" indent="yes"/>
@@ -28,6 +30,12 @@
         </aside>
       </body>
     </html>
+  </xsl:template>
+
+  <xsl:template match="table | tbody | tr | td | th | table/caption">
+    <xsl:element name="{local-name()}">
+      <xsl:apply-templates/>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="section | appendix">
@@ -103,6 +111,12 @@
 
   <xsl:template match="link[@linkend]">
     <a href="#{@linkend}">
+      <xsl:apply-templates/>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="link[@xlink:href]">
+    <a href="{@xlink:href}" target="_blank">
       <xsl:apply-templates/>
     </a>
   </xsl:template>
