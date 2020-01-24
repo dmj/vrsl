@@ -928,9 +928,9 @@ line =
                   <samp>
                      <p>Validation report</p><pre><code class="@language">&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
   &lt;c:error line="1" column="76"&gt;
-    org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
-    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{"http://example.org/ns":child}' is
-    expected.
+    org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber:
+    1; columnNumber: 76; cvc-complex-type.2.4.b: The content of element 'root'
+    is not complete. One of '{"http://example.org/ns":child}' is expected.
   &lt;/c:error&gt;
 &lt;/c:errors&gt;
 </code></pre></samp>
@@ -947,12 +947,13 @@ line =
             vrsl:column "76" ;
             vrsl:line "1"
         ] ;
-        vrsl:message """
-        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
-    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{\"http://example.org/ns\":child}' is
-    expected.
-      """
+        vrsl:message """org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml;
+        lineNumber: 1; columnNumber: 76; cvc-complex-type.2.4.b: The content
+        of element 'root' is not complete. One of
+        '{\"http://example.org/ns\":child}' is expected."""
+    ]
 ] .
+
 </code></pre></samp>
                   <samp>
                      <p>Validation summary in XML</p><pre><code class="@language">&lt;vrsl:ValidationSummary xmlns:vrsl="https://dmaus.name/ns/vrsl#"
@@ -961,9 +962,10 @@ line =
   &lt;vrsl:result&gt;
     &lt;vrsl:ValidationResult&gt;
       &lt;vrsl:message&gt;
-        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml; lineNumber: 1; columnNumber: 76;
-    cvc-complex-type.2.4.b: The content of element 'root' is not complete. One of '{"http://example.org/ns":child}' is
-    expected.
+        org.xml.sax.SAXParseException; systemId: file:/tmp/test.xml;
+        lineNumber: 1; columnNumber: 76; cvc-complex-type.2.4.b: The content
+        of element 'root' is not complete. One of
+        '{"http://example.org/ns":child}' is expected.
       &lt;/vrsl:message&gt;
       &lt;vrsl:instanceLocation&gt;
         &lt;vrsl:LineColumnLocator&gt;
