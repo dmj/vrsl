@@ -25,6 +25,13 @@
         <sh:class rdf:resource="#ValidationResult"/>
       </sh:PropertyShape>
     </sh:property>
+    <sh:property>
+      <sh:PropertyShape>
+        <sh:path rdf:resource="#instance"/>
+        <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#BlankNode"/>
+        <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+      </sh:PropertyShape>
+    </sh:property>
   </rdfs:Class>
 
   <rdfs:Class rdf:about="#LineColumnLocator">
@@ -153,6 +160,12 @@
     <rdfs:label>document</rdfs:label>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     <rdfs:domain rdf:resource="#Locator"/>
+  </rdfs:Property>
+
+  <rdfs:Property rdf:about="#instance">
+    <rdfs:label>instance</rdfs:label>
+    <rdfs:domain rdf:resource="#ValidationSummary"/>
+    <rdfs:comment>Connects a validation summary with the validated instance.</rdfs:comment>
   </rdfs:Property>
 
   <rdfs:Property rdf:about="#column">
