@@ -34,6 +34,39 @@
       </mediaobject>
     </figure>
   </section>
+  <section xml:id="namespaces">
+    <title>Namespaces</title>
+    <table>
+      <caption>Namespaces used in this document</caption>
+      <tbody>
+        <tr>
+          <td>dct</td>
+          <td>http://purl.org/dc/terms/</td>
+          <td>Dublin Core Metadata Terms</td>
+        </tr>
+        <tr>
+          <td>rdf</td>
+          <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+          <td>Resource Description Framework</td>
+        </tr>
+        <tr>
+          <td>vrsl</td>
+          <td>https://dmaus.name/ns/vrsl#</td>
+          <td>Validation Report Summary Language</td>
+        </tr>
+        <tr>
+          <td>sh</td>
+          <td>http://www.w3.org/ns/shacl#</td>
+          <td>Shape Constraint Language</td>
+        </tr>
+        <tr>
+          <td>xsd</td>
+          <td>http://www.w3.org/2001/XMLSchema#</td>
+          <td>XML Schema</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
   <section xml:id="ontology">
     <title>Ontology</title>
     <para>
